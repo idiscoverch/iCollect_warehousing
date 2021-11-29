@@ -1,0 +1,48 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      <ion-icon name="construct-outline"></ion-icon> {{"SETTINGS" | translate }}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-list-header>
+      {{"DATA_UPLOAD" | translate }}
+    </ion-list-header>
+  </ion-list>
+
+  <div>
+    <ion-button expand="block" color="primary" (click)="backup()">
+      <ion-icon name="cloud-upload" style="margin-right:7px;"></ion-icon>
+      {{"DB_BACKUP" | translate }}
+    </ion-button>
+    <small *ngIf="backup_data" style="color: #676a6c; margin-right:10px;">
+      <ion-icon name="calendar" color="primary"></ion-icon>
+      {{"LAST_BACKUP" | translate }} : {{ backup_data_date }}
+    </small>
+  </div>
+
+  <div>
+    <ion-button expand="block" color="danger" (click)="uploadPurchaseDocs()">
+      {{"DOCS_UPLOAD" | translate }}
+    </ion-button>
+  </div>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>{{"LANG_SELECT" | translate }} </ion-label>
+      <ion-select [(ngModel)]="lang" name="lang" id="lang" (ionChange)="changeLanguage(lang)">
+        <ion-select-option value="en">English</ion-select-option>
+        <ion-select-option value="fr">Français</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <div>
+    <ion-button expand="block" color="danger" (click)="logout()">
+      <ion-icon name="log-out-outline"></ion-icon> {{"LOGOUT" | translate }}
+    </ion-button>
+  </div>
+</ion-content>

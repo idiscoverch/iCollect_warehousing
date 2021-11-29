@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="back()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Media</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h3 *ngIf="medias.length == 0" style="text-align: center;">{{"NO_MEDIA_STORED" | translate }}</h3>
+
+  <ion-refresher slot="fixed" (ionRefresh)="ionRefresh($event)" (ionPull)="ionPull($event)"
+    (ionStart)="ionStart($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list>
+    <ion-item *ngFor="let item of medias" text-wrap>
+      <ion-thumbnail slot="start" (click)="showMedia(item)">
+        <img [src]="item.photo">
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ item.filename }}</h2>
+        <p>{{ item.doc_date }}</p>
+        <small>{{ item.description }}</small>
+      </ion-label>
+      <ion-button slot="end" fill="clear" *ngIf="item.sync === 0" (click)="deleteConfirm(item)">
+        <ion-icon slot="icon-only" name="trash"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>

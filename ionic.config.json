@@ -1,0 +1,7 @@
+{
+  "name": "icollect_buy",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{"LOGIN" | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="background">
+  <form style="margin-top:80%;" ion-fixed>
+    <ion-list>
+      <ion-item class="redBottom">
+        <ion-label position="stacked">{{"EMAIL" | translate }} <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input type="email" [(ngModel)]="username" name="username" aria-required="username"></ion-input>
+      </ion-item>
+
+      <ion-item class="redBottom">
+        <ion-label position="stacked">{{"PASSWORD" | translate }} <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input type="password" [(ngModel)]="password" name="password" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>{{"SAVE_PASSWORD" | translate }} </ion-label>
+        <ion-checkbox [(ngModel)]="save_login_checked" color="primary" name="save_login_checked"></ion-checkbox>
+      </ion-item>
+
+      <div class="loginBtn" (click)="login()">
+        <span>{{"LOGIN" | translate }}</span>
+      </div>
+    </ion-list>
+  </form>
+</ion-content>

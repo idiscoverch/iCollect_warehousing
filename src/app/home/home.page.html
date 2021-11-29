@@ -1,0 +1,97 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      <ion-icon name="home-outline"></ion-icon> {{"WAREHOUSE" | translate }} 
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">{{"PRODUCT" | translate }}</ion-label>
+      <ion-select [(ngModel)]="id_product" name="id_product" [disabled]="isProduct">
+        <ion-select-option *ngFor="let item of productList" [value]="item.id_regvalue">{{item.cvalue}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"PRODUCT_QUALITY" | translate }}</ion-label>
+      <ion-select [(ngModel)]="product_quality" name="product_quality" [disabled]="isProductQuality">
+        <ion-select-option *ngFor="let item of porductQualityList" [value]="item.id_regvalue">{{item.cvalue}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"PALETTE_NAME" | translate }}</ion-label>
+      <ion-select [(ngModel)]="palette_id" name="palette_id" [disabled]="isPalette" (ionChange)="loadPaletteData(palette_id)">
+        <ion-select-option *ngFor="let item of palettes" [value]="item.palette_id">{{item.palette_code}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"NB_BAGS" | translate }}</ion-label>
+      <ion-input type="number" [(ngModel)]="palette_nr_of_bags" [disabled]="isNrOfBags" (ionChange)="checkBeforeSave()" name="palette_nr_of_bags"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"PALETTE_WEIGHT" | translate }}</ion-label>
+      <ion-input type="number" [(ngModel)]="weight" (ionChange)="checkBeforeSave()" [disabled]="isWeight" name="weight"></ion-input>
+    </ion-item>
+
+    <ion-list-header color="danger">
+      <div>
+        <span><ion-icon name="calculator-outline"></ion-icon> {{"NET_WEIGHT" | translate }} : {{ net_weight }} Kg</span> 
+      </div>
+    </ion-list-header>
+
+    <div style="margin-top: 20px; margin-bottom: 20px;">  
+    <ion-button color="secondary" expand="block" (click)="savePhoto()" [disabled]="isPhoto">
+      <ion-icon name="camera-outline"></ion-icon> Photo
+    </ion-button>
+  </div>
+
+    <ion-button color="danger" expand="block" [disabled]="enable_save" (click)="save_weihgt()">
+      {{"SAVE_WEIGHT_BTN" | translate }}</ion-button>
+  </ion-list>
+
+
+
+
+<ion-list *ngIf="part2" style="margin-top:40px;">
+  <ion-item>
+    <ion-label position="stacked">{{"WAREHOUSE_NAME" | translate }}</ion-label>
+    <ion-select [(ngModel)]="warehouse_data" name="warehouse_data">
+      <ion-select-option *ngFor="let item of warehouseList" [value]="item.warehouse_data">{{item.warehouse_name}}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">{{"ZONE_NAME" | translate }}</ion-label>
+    <ion-select [(ngModel)]="wh_zone_id" name="wh_zone_id">
+      <ion-select-option *ngFor="let item of zoneList" [value]="item.wh_zone_id">{{item.zone_name}}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <div style="margin-top: 20px; margin-bottom: 20px;">  
+    <ion-button color="secondary" expand="block" (click)="savePhoto()" [disabled]="isPhoto">
+      <ion-icon name="camera-outline"></ion-icon> Photo
+    </ion-button>
+  </div>
+
+  <ion-button color="danger" expand="block" (click)="save_zone()">
+    {{"SAVE_WH_MVT_BTN" | translate }}</ion-button>
+</ion-list>
+
+</ion-content>
+
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button color="danger" (click)="media('957')">
+    <ion-icon name="images-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>

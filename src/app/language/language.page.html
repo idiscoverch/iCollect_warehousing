@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{"LANGUAGE" | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="background">
+    <ion-list class="langSel">
+      <ion-radio-group>
+        <ion-item>
+          <ion-label><img src="../../assets/en.jpg"> English</ion-label>
+          <ion-radio color="danger" (click)="changeLanguage('en')" name="language" value="en"></ion-radio>
+        </ion-item>
+  
+        <ion-item>
+          <ion-label><img src="../../assets/fr.jpg"> Français</ion-label>
+          <ion-radio color="danger" (click)="changeLanguage('fr')" name="language" value="fr"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+  </ion-content>

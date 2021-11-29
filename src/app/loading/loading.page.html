@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <ion-icon name="push-outline"></ion-icon> {{"LOADING_PALETTE" | translate }} 
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">{{"CUSTOMER_ORDER" | translate }}</ion-label>
+      <ion-select [(ngModel)]="id_ord_schedule" name="id_ord_schedule" (ionChange)="checkSchedule()">
+        <ion-select-option *ngFor="let item of scheduleList" [value]="item.id_ord_schedule">{{item.supplier_reference_nr}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item *ngIf="shp_details">
+      <ion-label position="stacked">{{"MANAGER" | translate }}</ion-label>
+      {{ person_name }}
+    </ion-item>
+
+    <ion-item *ngIf="shp_details">
+      <ion-label position="stacked">{{"NB_CONTAINER" | translate }}</ion-label>
+      {{ nr_containers }}
+    </ion-item>
+
+    <ion-item *ngIf="shp_details">
+      <ion-label position="stacked">{{"QTY_KG" | translate }}</ion-label>
+      {{ weight_shipment }}
+    </ion-item>
+
+    <ion-item *ngIf="shp_details">
+      <ion-label position="stacked">{{"SHP_DATE" | translate }}</ion-label>
+      {{ month_etd }}
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{"WAREHOUSE_NAME" | translate }}</ion-label>
+      <ion-select [(ngModel)]="warehouse_id" name="warehouse_id" (ionChange)="checkWarehouse()">
+        <ion-select-option *ngFor="let item of warehouseList" [value]="item.warehouse_id">{{item.warehouse_name}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item *ngIf="palettes">
+      <ion-label position="stacked">{{"PALETTE_NAME" | translate }}</ion-label>
+      <ion-select [(ngModel)]="palette_id" name="palette_id" (ionChange)="checkPalette()">
+        <ion-select-option *ngFor="let item of palettesList" [value]="item.palette_id">{{item.palette_code}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item *ngIf="palette_details">
+      <ion-label position="stacked">{{"PALETTE_TARE" | translate }}</ion-label>
+      {{ tare }}
+    </ion-item>
+
+    <ion-item *ngIf="palette_details">
+      <ion-label position="stacked">{{"PALETTE_WEIGHT" | translate }}</ion-label>
+      <ion-input type="number" [(ngModel)]="weight" (ionChange)="checkBeforeSave()" name="weight"></ion-input>
+    </ion-item>
+
+    <ion-list-header color="danger">
+      <div>
+        <span><ion-icon name="calculator-outline"></ion-icon> {{"NET_WEIGHT" | translate }} : {{ net_weight }} Kg</span> 
+      </div>
+    </ion-list-header>
+
+    <ion-button color="danger" expand="block" [disabled]="enable_save" (click)="save_weihgt()">
+      {{"SAVE_AND_NEXT_BTN" | translate }}</ion-button>
+  </ion-list>
+</ion-content>
